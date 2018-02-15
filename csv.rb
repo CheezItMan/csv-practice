@@ -7,7 +7,21 @@ planets = [
   [3, "Earth", 1.0, 1.0],
   [4, "Mars", 0.107, 1.5]
 ]
-
+#
+CSV.open("planet_data.csv", "w") do |file|
+  planets.each do |planet|
+   file << planet
+  end
+end
+#
+# planets = []
+# CSV.read("planet_data.csv").each do |line|
+#   # planets << Planet.new(line[0], line[1],
+#                           # line[2], line[3])
+#   line.each do |item|
+#     puts item
+#   end
+# end
 # CSV.open("planet_data.csv", "w") do |file|
 #   planets.each do |planet|
 #     ap planet
@@ -29,26 +43,27 @@ planets = [
 #   row[:china] = line[5]
 #   medals << row
 # end
-
-
-# CSV.read('olympic-data.csv', 'r', headers: true,
-#   header_converters: :symbol).each do |row|
-#     ap row
-# end
-
-
-# class OlympicGame
-#   attr_reader :year, :uk, :ussr, :russia, :usa, :china
 #
-#   def initialize(olympic_hash)
-#     @year = olympic_hash[:year]
-#     @uk   = olympic_hash[:uk]
-#     @ussr = olympic_hash[:ussr]
-#     @russia = olympic_hash[:russia]
-#     @usa = olympic_hash[:usa]
-#     @china = olympic_hash[:china]
-#   end
-# end
+#
+CSV.read('olympic-data.csv', 'r',
+     headers: true,
+  header_converters: :symbol).each do |row|
+    ap row
+end
+
+
+class OlympicGame
+  attr_reader :year, :uk, :ussr, :russia, :usa, :china
+
+  def initialize(olympic_hash)
+    @year = olympic_hash[:year]
+    @uk   = olympic_hash[:uk]
+    @ussr = olympic_hash[:ussr]
+    @russia = olympic_hash[:russia]
+    @usa = olympic_hash[:usa]
+    @china = olympic_hash[:china]
+  end
+end
 #
 # olympics = []
 # CSV.read('olympic-data.csv', 'r', headers: true,
